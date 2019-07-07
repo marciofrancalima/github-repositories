@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 export const Container = styled.div`
   width: 700px;
@@ -32,9 +32,21 @@ export const Form = styled.form`
   }
 `;
 
-export const SubmitButton = styled.button.attrs({
+// Configuring the animation for the loading icon
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
-})`
+  disabled: props.loading,
+}))`
   background: #4a90e2;
   border: 0;
   padding: 0 15px;
@@ -42,4 +54,40 @@ export const SubmitButton = styled.button.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Creating the animation in the loading icon */
+  ${props =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
+`;
+
+export const List = styled.ul`
+  list-style: none;
+  margin-top: 30px;
+
+  li {
+    display: flex;
+    padding: 15px 0;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Apply border on top except first element */
+    & + li {
+      border-top: 1px solid #eee;
+    }
+
+    a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+  }
 `;
