@@ -1,12 +1,26 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+// Configuring the animation for the loading icon
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const Loading = styled.div`
   color: #4a90e2;
-  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  svg {
+    animation: ${rotate} 2s linear infinite;
+  }
 `;
 
 export const Owner = styled.header`
@@ -98,6 +112,45 @@ export const IssueList = styled.ul`
         font-size: 12px;
         color: #999;
       }
+    }
+  }
+`;
+
+export const IssueFilter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+
+  button {
+    padding: 7px;
+    border-radius: 4px;
+    margin-right: 5px;
+
+    &:nth-child(${props => props.active + 1}) {
+      background: #4a90e2;
+      color: #fff;
+    }
+  }
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  font-size: 14px;
+
+  button {
+    border-radius: 4px;
+    padding: 10px;
+    background: #4a90e2;
+    color: #fff;
+    font-weight: bold;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
 `;
