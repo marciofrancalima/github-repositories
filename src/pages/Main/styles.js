@@ -61,6 +61,19 @@ export const List = styled.ul`
     justify-content: space-between;
     align-items: center;
 
+    div {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border: 2px solid #eee;
+      }
+    }
+
     /* Apply border on top except first element */
     & + li {
       border-top: 1px solid #eee;

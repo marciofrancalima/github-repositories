@@ -43,6 +43,7 @@ export default class Main extends Component {
     const response = await api.get(`/repos/${newRepo}`);
     const data = {
       name: response.data.full_name,
+      avatar: response.data.owner.avatar_url,
     };
 
     this.setState({
@@ -82,7 +83,10 @@ export default class Main extends Component {
         <List>
           {repositories.map(repository => (
             <li key={repository.name}>
-              <span>{repository.name}</span>
+              <div>
+                <img src={repository.avatar} alt={repository.name} />
+                <span>{repository.name}</span>
+              </div>
               <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
                 Details
               </Link>
