@@ -43,13 +43,13 @@ export default class Main extends Component {
       const { newRepo, repositories } = this.state;
 
       if (newRepo === '') {
-        throw 'Please enter the name of the repository';
+        throw new Error('Please enter the name of the repository');
       }
 
       const hasRepo = repositories.find(r => r.name === newRepo);
 
       if (hasRepo) {
-        throw 'Repository is already in the list of repositories';
+        throw new Error('Repository is already in the list of repositories');
       }
 
       const response = await api.get(`/repos/${newRepo}`);
@@ -88,7 +88,7 @@ export default class Main extends Component {
             onChange={this.handleInputChange}
           />
 
-          <SubmitButton loading={loading}>
+          <SubmitButton loading={loading ? 1 : 0}>
             {loading ? (
               <FaSpinner color="#FFF" size={14} />
             ) : (
